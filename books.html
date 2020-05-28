@@ -17,25 +17,61 @@
             <div id="menuknap">☰</div>
             <ul style="list-style-type:none" id="menu" class="hidden">
                 <a href="index.html"></a>
-                <li><a href="produkter.html">Værker</a></li><li><a href="books.html">Bøger</a></li>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
                 <li><a href="om.html">Om</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
 
         </nav>
     </header>
+    <section id="liste"></section>
+    <template>
+        <article>
+            <h1 class="overskrift"></h1>
+            <img class="billede" src="">
+            <h2 class="underoverskrift"></h2>
+            <p class="side antal"></p>
+            <p class="beskrivelse"></p>
 
+
+        </article>
+    </template>
 
 
     <script>
-        window.addEventListener("load", sidenVises);
+        let pageIndhold
+        document.addEventListener("DOMContentLoaded", start)
 
 
-        function sidenVises() {
-            console.log("sidenVises");
-            document.querySelector("#menuknap").addEventListener("click", toggleMenu);
+        const url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/pages/15";
+        //        const json = await resspons.json();
+
+
+
+
+        async function start() {
+            let ressponse = await fetch(url);
+            pageIndhold = await ressponse.json;
+            visJson();
+            toggleMenu();
+
+
         }
 
+
+        function visJson() {
+            console.log("Page data loades");
+            //            document.querySelector(".overskrift").innerHTML = pageIndhold.title.rendered;
+
+            document.querySelector(".billede").src = pageIndhold.guid;
+            //            document.querySelector(".underoverskrift").innerHTML = pageIndhold.content.rendered;
+            //
+            // document.querySelector(".beskrivelse").innerHTML = pageIndhold.content.rendered;
+
+            document.querySelector("#menuknap").addEventListener("click", toggleMenu);
+
+        }
 
         function toggleMenu() {
             console.log("toggleMenu");
@@ -49,5 +85,8 @@
                 document.querySelector("#menuknap").textContent = "X";
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>

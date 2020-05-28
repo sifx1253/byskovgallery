@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+        <div id="logo" onclick="window.location.href='index.html'"></div>
+
+        <nav>
+            <div id="menuknap">☰</div>
+            <ul style="list-style-type:none" id="menu" class="hidden">
+                <a href="index.html"></a>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
+                <li><a href="om.html">Om</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <section id="udskriv">
+        <main id="liste"></main>
+        <template>
+            <article class="book">
+                <h1 class="overskrift"></h1>
+                <img class="billede" src="">
+                <h2 class="underoverskrift"></h2>
+                <p class="text"></p>
+                <p class="side antal"></p>
+                <p class="beskrivelse"></p>
+
+
+            </article>
+        </template>
+
+    </section>
+
+
+
+    <script>
+        const url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/posts";
+        document.addEventListener("DOMContentLoaded", start);
+        let retter = [];
+        const container = document.querySelector("#udskriv");
+        const retterTemplate = document.querySelector("template");
+
+
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        function start() {
+            hentData();
+
+        }
+
+
+        async function hentData() {
+            const jsonData = await fetch(url);
+            retter = await jsonData.json();
+            console.log("hentData");
+
+            visRetter;
+        }
+
+
+
+        function visRetter() {
+            console.log(retter);
+            container.innerHTML = "";
+            retter.feed.entry.forEach(ret => {
+                {
+                    let klon = retterTemplate.cloneNode(true).content;
+                    klon.querySelector("img").src = "imgs/small/" + ret.gsx$billede.$t + "-sm.jpg";
+                    klon.querySelector("h2").textContent = ret.gsx$navn.$t;
+                    klon.querySelector("p").textContent = ret.gsx$kort.$t;
+                    klon.querySelector("p + p").textContent = `Pris: ${ret.gsx$pris.$t},-`;
+
+
+
+                    container.appendChild(klon);
+                }
+            });
+
+            console.log("visretter");
+        }
+
+        // Samme som før
+    </script>
+</body></html>

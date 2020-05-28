@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+        <div id="logo" onclick="window.location.href='index.html'"></div>
+
+        <nav>
+            <div id="menuknap">☰</div>
+            <ul style="list-style-type:none" id="menu" class="hidden">
+                <a href="index.html"></a>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
+                <li><a href="om.html">Om</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main id="liste"></main>
+    <template>
+        <article class="book">
+            <h1 class="overskrift"></h1>
+            <img class="billede" src="">
+            <h2 class="underoverskrift"></h2>
+            <p class="text"></p>
+            <p class="side antal"></p>
+            <p class="beskrivelse"></p>
+
+
+        </article>
+    </template>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        let pages
+
+
+
+        let url1 = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/posts";
+
+
+
+
+
+        async function start() {
+            let response = await fetch(url1);
+            pages = await response.json;
+            visPages();
+            //            toggleMenu();
+
+
+        }
+
+        // Samme som før
+        function visPages() {
+            console.log("JSON forberedes")
+
+            let liste = document.querySelector("#liste");
+            let template = document.querySelector("template");
+
+            pages.forEach(page => {
+                let clone = template.cloneNode(true).content;
+
+                // Samme som før - Henvis til de elementer som skal hentes.
+                clone.querySelector(".overskrift").textContent = page.title.rendered;
+
+
+                liste.appendChild(clone);
+            });
+            console.log("Husk nu at rette HTMLen!")
+        }
+    </script>
+</body></html>
