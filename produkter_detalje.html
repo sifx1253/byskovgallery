@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+        <div id="logo" onclick="window.location.href='index.html'"></div>
+
+        <nav>
+            <div id="menuknap">☰</div>
+            <ul style="list-style-type:none" id="menu" class="hidden">
+                <a href="index.html"></a>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
+                <li><a href="om.html">Om</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main id="liste">
+
+        <h1 class="overskrift"></h1>
+        <img class="billede" src="">
+        <h2 class="titel"></h2>
+
+        <p class="size"></p>
+        <p class="pris"></p>
+        <p class="beskrivelse"></p>
+        <p class="lydfil"></p>
+    </main>
+
+
+
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get("id");
+        let pages;
+        document.addEventListener("DOMContentLoaded", start)
+
+
+
+
+        async function start() {
+            let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/${id}`);
+            pages = await jsonData.json();
+            visPages();
+            //            toggleMenu();
+
+
+        }
+
+
+        function visPages() {
+
+
+            //            document.querySelector(".overskrift").textContent = pages.overskrift;
+            document.querySelector(".titel").textContent = pages.titel;
+            document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
+            document.querySelector(".size").textContent = pages.size;
+            document.querySelector(".pris").textContent = pages.pris;
+
+
+            document.querySelector(".billede").src = pages.billede.guid;
+
+
+        }
+
+    </script>
+</body>
+
+</html>

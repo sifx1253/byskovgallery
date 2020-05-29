@@ -25,30 +25,68 @@
 
         </nav>
     </header>
+    <main id="liste"></main>
+    <template>
+        <article class="book">
+            <h1 class="overskrift"></h1>
+            <img class="billede" src="">
+            <h2 class="underoverskrift"></h2>
+            <p class="text"></p>
+            <p class="side antal"></p>
+            <p class="beskrivelse"></p>
 
+
+        </article>
+    </template>
 
 
     <script>
-        window.addEventListener("load", sidenVises);
+        document.addEventListener("DOMContentLoaded", start);
+        let pages
 
 
-        function sidenVises() {
-            console.log("sidenVises");
-            document.querySelector("#menuknap").addEventListener("click", toggleMenu);
+
+
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter";
+
+
+
+
+
+        async function start() {
+            let response = await fetch(url);
+            pages = await response.json();
+            visPages();
+            toggleMenu();
+
+
         }
 
+        // Samme som før
+        function visPages() {
+            console.log("JSON forberedes" + pages)
 
-        function toggleMenu() {
-            console.log("toggleMenu");
-            document.querySelector("#menu").classList.toggle("hidden");
+            let liste = document.querySelector("#liste");
+            let template = document.querySelector("template");
 
-            let erSkjult = document.querySelector("#menu").classList.contains("hidden");
+            pages.forEach(page => {
+                const klon = template.cloneNode(true).content;
 
-            if (erSkjult == true) {
-                document.querySelector("#menuknap").textContent = "☰";
-            } else {
-                document.querySelector("#menuknap").textContent = "X";
-            }
+                klon.querySelector(".overskrift").textContent = page.title.rendered;
+
+                klon.querySelector(".billede").src = page.billede.guid;
+
+                console.log(location.href, page.id)
+
+                klon.querySelector("article").addEventListener("click", () => {
+
+                    location.href = `produkter_detalje.html?id=${page.id}`;
+
+                })
+
+                liste.appendChild(klon); // der stod clone
+            });
+
         }
     </script>
 </body></html>
