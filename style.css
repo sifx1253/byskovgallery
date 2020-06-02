@@ -8,6 +8,10 @@ body {
     margin: 0 auto;
 }
 
+img {
+    width: 100%;
+}
+
 
 
 /***menu***/
@@ -57,14 +61,168 @@ header nav a:visited {
     margin: 10px;
 }
 
-
-
 /*****Menu SLUT*****/
 
+/***FOOTER***/
+.some {
+    background-image: url(img/some.svg);
+    height: 7vw;
+    width: 15.8vw;
 
-/**** media INDSTILLINGER **/
+}
+
+footer .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 2px solid black;
+    padding: 10px;
+    margin-left: 25px;
+    width: 96%;
+
+}
+
+footer .some {
+    flex-grow: 1;
+    flex-basis: 500px;
+    padding: 1.2rem;
+}
+
+/***Footer SLUT***/
+
+/***Forside INDSTILLINGER***/
+#liste_forside {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+
+}
+
+.wrapper_forside img {
+    width: 70%;
+    padding-top: 90px;
+}
+
+.wrapper_forside article:nth-child(odd) {
+    background: #fff;
+}
 
 
+
+/** Produkter**/
+
+#produkter {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 30px;
+}
+
+.billede_produkt {
+    border-radius: 0px;
+    width: 100%;
+
+}
+
+article.produkt {
+
+    padding: 10px;
+
+}
+
+article.bred {
+
+    grid-column: span 2;
+
+}
+
+
+/***Produkter SLUT***/
+
+
+
+
+/**Bøger INDSTILLINGER**/
+
+#liste_books {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+
+}
+
+
+
+.books .book_img:nth-child(odd) {
+    padding-top: 90px;
+}
+
+
+
+/***MEDIA INDSTILLINGER***/
+@media screen and (min-width:768px) {
+
+    #liste_forside {
+        grid-template-columns: 2fr 2fr;
+        grid-auto-flow: dense;
+    }
+
+    .wrapper_forside article:nth-child(even) {
+        max-width: 450px;
+        padding-top: 90px;
+
+
+    }
+
+
+    .wrapper_forside article:nth-child(4n-1) {
+        grid-column: 2;
+
+    }
+
+    .wrapper_forside img {
+        width: 70%;
+
+    }
+
+
+}
+
+@media screen and (min-width:768px) {
+
+    #liste_books {
+        grid-template-columns: 2fr 2fr;
+        grid-auto-flow: dense;
+        max-width: 600px;
+        grid-gap: 100px;
+    }
+
+    .books .book_img :nth-child(even) {
+        padding-top: 90px;
+    }
+
+
+    #book_section article:nth-child(4n-1) {
+        grid-column: 2;
+
+
+    }
+
+    #book_section img {
+        width: 400px;
+    }
+
+    .header_page {
+        width: 92vw;
+        /*        position: fixed;*/
+        border-bottom: 2px solid black;
+        padding: 10px;
+        margin-left: 25px;
+    }
+
+}
 
 
 
@@ -84,7 +242,7 @@ header nav a:visited {
 
     header {
         width: 95vw;
-        position: fixed;
+        /*        position: fixed;*/
         border-bottom: 2px solid black;
         padding: 10px;
         margin-left: 25px;

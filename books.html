@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Bøger</title>
     <link rel="stylesheet" href="style.css">
+
+
 </head>
 
 <body>
@@ -25,53 +27,83 @@
 
         </nav>
     </header>
-    <section id="liste"></section>
-    <template>
-        <article>
-            <h1 class="overskrift"></h1>
-            <img class="billede" src="">
-            <h2 class="underoverskrift"></h2>
-            <p class="side antal"></p>
-            <p class="beskrivelse"></p>
+
+    <h1 class="header_page">Bøger</h1>
+    <div id="book_section">
+        <main id="liste_books"></main>
+
+        <template>
+
+            <article class="book_img">
+                <img class="billede" src="">
+            </article>
+            <article class="books">
+
+                <h1 class="overskrift"></h1>
+                <p class="forfatter"></p>
+                <p class="pris"> ,-</p>
+                <p class="sideantal"></p>
+                <p class="underoverskrift"></p>
+                <p class="beskrivelse"></p>
 
 
-        </article>
-    </template>
 
+            </article>
+        </template>
+
+
+    </div>
 
     <script>
-        let pageIndhold
-        document.addEventListener("DOMContentLoaded", start)
+        document.addEventListener("DOMContentLoaded", start);
+        let pages
 
 
-        const url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/pages/15";
-        //        const json = await resspons.json();
+
+
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/books";
+
 
 
 
 
         async function start() {
-            let ressponse = await fetch(url);
-            pageIndhold = await ressponse.json;
-            visJson();
+            let response = await fetch(url);
+            pages = await response.json();
+            visPages();
             toggleMenu();
-
-
-        }
-
-
-        function visJson() {
-            console.log("Page data loades");
-            //            document.querySelector(".overskrift").innerHTML = pageIndhold.title.rendered;
-
-            document.querySelector(".billede").src = pageIndhold.guid;
-            //            document.querySelector(".underoverskrift").innerHTML = pageIndhold.content.rendered;
-            //
-            // document.querySelector(".beskrivelse").innerHTML = pageIndhold.content.rendered;
-
             document.querySelector("#menuknap").addEventListener("click", toggleMenu);
 
+
         }
+
+        // Samme som før
+        function visPages() {
+            console.log("JSON forberedes" + pages)
+
+            let liste = document.querySelector("#liste_books");
+            let template = document.querySelector("template");
+
+            pages.forEach(page => {
+                const klon = template.cloneNode(true).content;
+
+                klon.querySelector(".overskrift").textContent = page.title.rendered;
+                klon.querySelector(".underoverskrift").innerHTML = page.underoverskrift;
+                klon.querySelector(".forfatter").textContent = page.forfatter;
+
+                klon.querySelector(".beskrivelse").textContent = page.beskrivelse;
+
+                klon.querySelector(".sideantal").textContent = page.sideantal;
+                klon.querySelector(".pris").textContent = page.pris;
+
+                klon.querySelector(".billede").src = page.billede.guid;
+
+
+                liste.appendChild(klon); // der stod clone
+            });
+
+        }
+
 
         function toggleMenu() {
             console.log("toggleMenu");

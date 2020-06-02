@@ -7,7 +7,6 @@
     <title></title>
     <link rel="stylesheet" href="style.css">
 
-
 </head>
 
 <body>
@@ -28,51 +27,34 @@
         </nav>
     </header>
 
-    <h1 class="header_page">Nyheder</h1>
-    <div class="wrapper_forside">
+    <h1>Bøger</h1>
 
-        <main id="liste_forside"></main>
-
-        <template>
-
-            <article class="book_img">
-                <img class="billede" src="">
-            </article>
-            <article class="forside">
-
-                <h1 class="overskrift"></h1>
-                <p class="tekst"></p>
+    <main id="liste_books"></main>
+    <!--
+    <template>
+        <article class="book_img">
 
 
-            </article>
-        </template>
-    </div>
+        </article>
+    </template>
+-->
 
-    <footer>
-        <div class="wrapper">
-            <div class="left">
-                <p>Mobil: +45 20 82 24 58</p>
-                <p>Atelier: Falkenhøjvej 7</p>
-                <p>3460 Birkerød. Denmark</p>
-                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642">Se kort</a>
-                <p>Email:<a href="byskov@grundtvigs.dk">byskov@grundtvigs.dk</a></p>
-            </div>
-            <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
-                <p>Kunstbiblioteket Nikolajgade 22.</p>
+    <template>
+        <article class="book_img">
+            <img class="billede" src="">
+        </article>
+        <article class="books">
 
-                <div class="some"></div>
-            </div>
-
-        </div>
+            <h1 class="overskrift"></h1>
+            <p class="underoverskrift"></p>
+            <p class="forfatter"></p>
+            <p class="sideantal"></p>
+            <p class="beskrivelse"></p>
+            <p class="pris"> ,-</p>
 
 
-
-
-
-
-    </footer>
-
-
+        </article>
+    </template>
 
 
     <script>
@@ -82,7 +64,7 @@
 
 
 
-        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/forside";
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/books";
 
 
 
@@ -102,19 +84,25 @@
         function visPages() {
             console.log("JSON forberedes" + pages)
 
-            let liste = document.querySelector("#liste_forside");
+            let liste = document.querySelector("#liste_books");
             let template = document.querySelector("template");
 
             pages.forEach(page => {
                 const klon = template.cloneNode(true).content;
 
                 klon.querySelector(".overskrift").textContent = page.title.rendered;
-                klon.querySelector(".tekst").textContent = page.tekst;
+                klon.querySelector(".underoverskrift").innerHTML = page.underoverskrift;
+                klon.querySelector(".forfatter").textContent = page.forfatter;
+
+                klon.querySelector(".beskrivelse").textContent = page.beskrivelse;
+
+                klon.querySelector(".sideantal").textContent = page.sideantal;
+                klon.querySelector(".pris").textContent = page.pris;
 
                 klon.querySelector(".billede").src = page.billede.guid;
 
 
-                liste.appendChild(klon);
+                liste.appendChild(klon); // der stod clone
             });
 
         }

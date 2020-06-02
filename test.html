@@ -5,9 +5,49 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="style.css">
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <style>
+        #liste {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+
+        }
+
+        img {
+            width: 100%;
+        }
+
+        @media screen and (min-width:768px) {
+
+            #liste {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-flow: dense;
+                max-width: 1000px;
+                grid-gap: 20px;
+
+            }
+
+            article :nth-child(even) {
+                padding-top: 90px;
+            }
 
 
+            article:nth-child(4n-1) {
+                grid-column: 2;
+
+
+            }
+
+            .bredformat {}
+
+            img {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
@@ -27,52 +67,20 @@
 
         </nav>
     </header>
-
-    <h1 class="header_page">Nyheder</h1>
-    <div class="wrapper_forside">
-
-        <main id="liste_forside"></main>
-
-        <template>
-
-            <article class="book_img">
-                <img class="billede" src="">
-            </article>
-            <article class="forside">
-
-                <h1 class="overskrift"></h1>
-                <p class="tekst"></p>
+    <main id="liste"></main>
+    <template>
+        <article class="produkter">
+            <!--            <h1 class="overskrift"></h1>-->
+            <article class="article_bredformat"><img class="billede_bredformat" src="" alt=""></article>
+            <img class="billede" src="">
+            <h2 class="underoverskrift"></h2>
+            <p class="text"></p>
+            <p class="side antal"></p>
+            <p class="beskrivelse"></p>
 
 
-            </article>
-        </template>
-    </div>
-
-    <footer>
-        <div class="wrapper">
-            <div class="left">
-                <p>Mobil: +45 20 82 24 58</p>
-                <p>Atelier: Falkenhøjvej 7</p>
-                <p>3460 Birkerød. Denmark</p>
-                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642">Se kort</a>
-                <p>Email:<a href="byskov@grundtvigs.dk">byskov@grundtvigs.dk</a></p>
-            </div>
-            <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
-                <p>Kunstbiblioteket Nikolajgade 22.</p>
-
-                <div class="some"></div>
-            </div>
-
-        </div>
-
-
-
-
-
-
-    </footer>
-
-
+        </article>
+    </template>
 
 
     <script>
@@ -82,7 +90,7 @@
 
 
 
-        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/forside";
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter";
 
 
 
@@ -98,23 +106,29 @@
 
         }
 
-        // Samme som før
+
         function visPages() {
             console.log("JSON forberedes" + pages)
 
-            let liste = document.querySelector("#liste_forside");
+            let liste = document.querySelector("#liste");
             let template = document.querySelector("template");
 
             pages.forEach(page => {
                 const klon = template.cloneNode(true).content;
 
-                klon.querySelector(".overskrift").textContent = page.title.rendered;
-                klon.querySelector(".tekst").textContent = page.tekst;
+                //                klon.querySelector(".overskrift").textContent = page.title.rendered;
 
                 klon.querySelector(".billede").src = page.billede.guid;
 
+                console.log(location.href, page.id)
 
-                liste.appendChild(klon);
+                klon.querySelector("article").addEventListener("click", () => {
+
+                    location.href = `produkter_detalje.html?id=${page.id}`;
+
+                })
+
+                liste.appendChild(klon); // der stod clone
             });
 
         }
@@ -132,5 +146,8 @@
                 document.querySelector("#menuknap").textContent = "X";
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
