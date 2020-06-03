@@ -22,13 +22,13 @@ img {
 header {
     width: 100vw;
 
-
 }
 
 header nav {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    position: relative;
 
 
 
@@ -72,6 +72,10 @@ header nav a:visited {
 
 }
 
+footer {
+    padding-top: 90px;
+}
+
 footer .wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +85,9 @@ footer .wrapper {
     margin-left: 25px;
     width: 96%;
 
+
 }
+
 
 footer .some {
     flex-grow: 1;
@@ -108,6 +114,60 @@ footer .some {
     background: #fff;
 }
 
+#splash img {
+
+    height: 85vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+
+
+
+.splash_tekst {
+    position: absolute;
+    left: 2vw;
+    top: 16vw;
+    width: 43vw;
+    padding-left: 4vw;
+}
+
+
+.pil {
+    background-image: url(img/pil.svg);
+    /*display: block;*/
+    width: 6vw;
+    height: 3.6vw;
+    position: absolute;
+    left: 19vw;
+    bottom: 9vw;
+    /*    max-width: 10vw;*/
+}
+
+
+.pil {
+    animation-name: beat_kf;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+@keyframes beat_kf {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
 /**Forside SLUT***/
 
 /** Produkter**/
@@ -120,14 +180,18 @@ footer .some {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
     grid-auto-flow: dense;
+    /*
+    position: relative;
+    display: block;
+*/
 
 }
 
-.billede_produkt {
+.produkt img {
     width: 100%;
+    height: 100%;
 
-
-
+    object-fit: cover;
 
 }
 
@@ -209,6 +273,9 @@ article.bred {
 
 
 /***MEDIA INDSTILLINGER***/
+
+
+
 @media screen and (min-width:768px) {
 
     #liste_forside {
@@ -261,11 +328,11 @@ article.bred {
         width: 400px;
     }
 
-    .header_page {
+    .header_constant {
+        padding-top: 20px;
         width: 92vw;
-        /*        position: fixed;*/
         border-bottom: 2px solid black;
-        padding: 10px;
+        padding: 15px;
         margin-left: 25px;
     }
 
