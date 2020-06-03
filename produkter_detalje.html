@@ -25,19 +25,30 @@
 
         </nav>
     </header>
-    <main id="liste">
 
-        <h1 class="overskrift"></h1>
-        <img class="billede" src="">
-        <h2 class="titel"></h2>
+    <div class="wrapper_produkt">
+        <main id="container_produkt">
+            <div class="col_img"> <img class="billede" src=""></div>
+            <div class="col_info">
+                <h1 class="overskrift"></h1>
 
-        <p class="size"></p>
-        <p class="pris"></p>
-        <p class="beskrivelse"></p>
-        <p class="lydfil"></p>
-    </main>
+                <h2 class="titel"></h2>
+
+                <p class="size"></p>
+                <p class=" pris"></p>
+
+            </div>
+            <div class="col_tekst">
+                <h3>Beskrivelse af værket</h3>
+                <p class="beskrivelse"></p>
+                <p class="lydfil"></p>
+            </div>
 
 
+
+        </main>
+
+    </div>
 
     <script>
         let urlParams = new URLSearchParams(window.location.search);
@@ -64,16 +75,15 @@
             //            document.querySelector(".overskrift").textContent = pages.overskrift;
             document.querySelector(".titel").textContent = pages.titel;
             document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
-            document.querySelector(".size").textContent = pages.size;
-            document.querySelector(".pris").textContent = pages.pris;
+            //            document.querySelector(".matriale").textContent = 'Matrialer' + pages.matriale;
+            document.querySelector(".size").textContent = 'Størrelse:' + pages.size;
+
+            document.querySelector(".pris").textContent = 'Pris:' + pages.pris + ',-';
 
 
             document.querySelector(".billede").src = pages.billede.guid;
 
 
         }
-
     </script>
-</body>
-
-</html>
+</body></html>

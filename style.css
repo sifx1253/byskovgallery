@@ -10,6 +10,7 @@ body {
 
 img {
     width: 100%;
+    object-fit: cover;
 }
 
 
@@ -107,28 +108,34 @@ footer .some {
     background: #fff;
 }
 
-
+/**Forside SLUT***/
 
 /** Produkter**/
-
+/***SKAL INDSÆTTES I MQ***/
 #produkter {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 10px;
+    /*    padding: 10px;*/
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
+    grid-auto-flow: dense;
+
 }
 
 .billede_produkt {
-    border-radius: 0px;
     width: 100%;
+
+
+
 
 }
 
+
+
 article.produkt {
 
-    padding: 10px;
+    /*    padding: 10px;*/
 
 }
 
@@ -136,6 +143,26 @@ article.bred {
 
     grid-column: span 2;
 
+}
+
+/**Produkt_detalje**/
+.wrapper_produkt #container_produkt {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    grid-gap: 30px;
+
+}
+
+.col_img img {
+    width: 100%;
+}
+
+
+.col_tekst {
+
+    grid-column: span 2;
 }
 
 
@@ -158,6 +185,26 @@ article.bred {
 .books .book_img:nth-child(odd) {
     padding-top: 90px;
 }
+
+
+/**Bøger SLUT**/
+
+/***Kontakt INDSTILLINGER***/
+
+#container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    grid-gap: 30px;
+
+}
+
+.kontakt_billede img {
+    width: 80%;
+}
+
+/****Kontakt SLUT***/
 
 
 
@@ -195,7 +242,7 @@ article.bred {
     #liste_books {
         grid-template-columns: 2fr 2fr;
         grid-auto-flow: dense;
-        max-width: 600px;
+        max-width: 1000px;
         grid-gap: 100px;
     }
 

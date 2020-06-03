@@ -7,6 +7,8 @@
     <title></title>
     <link rel="stylesheet" href="style.css">
 
+    <style></style>
+
 </head>
 
 <body>
@@ -26,11 +28,29 @@
 
         </nav>
     </header>
+
+    <nav>
+        <h1>Alle værker</h1>
+
+        <button class="filter valgt" data-kategori="alle">
+            <p>Alle Værker</p>
+        </button>
+        <button class="filter" data-kategori="malerier">
+            <p>Malerier</p>
+        </button>
+        <button class="filter" data-kategori="plakater">
+            <p>Plakater</p>
+        </button>
+
+
+    </nav>
+
+
     <main id="produkter"></main>
     <template>
         <article class="produkt">
 
-            <img class="billede" src="">
+            <img class="billede_produkt" src="">
 
 
         </article>
@@ -40,11 +60,12 @@
     <script>
         document.addEventListener("DOMContentLoaded", start);
         let products;
+        let filter = "alle";
 
 
 
 
-        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter";
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter?per_page=100";
 
 
 
@@ -52,9 +73,11 @@
 
         async function start() {
             let response = await fetch(url);
+
             products = await response.json();
             visProducts();
             toggleMenu();
+            addEventlistnerToButtons();
             document.querySelector("#menuknap").addEventListener("click", toggleMenu);
 
 
@@ -65,29 +88,54 @@
             console.log("JSON forberedes" + products);
 
             let produkter = document.querySelector("#produkter");
+            produkter.innerHTML = "";
             let template = document.querySelector("template");
 
             products.forEach(product => {
-                const klon = template.cloneNode(true).content;
 
-                //                klon.querySelector(".overskrift").textContent = page.title.rendered;
+                if (filter == "alle" || filter == product.kategori) {
 
-                klon.querySelector(".billede").src = product.billede.guid;
 
-                console.log(product.format_billede);
-                if (product.format_billede == 1) {
-                    klon.querySelector("article").classList.add("bred");
+                    const klon = template.cloneNode(true).content;
+
+                    klon.querySelector(".billede_produkt").src = product.billede.guid;
+
+                    console.log(product.format_billede);
+                    if (product.format_billede == 1) {
+                        klon.querySelector("article").classList.add("bred");
+                    }
+
+                    klon.querySelector("article").addEventListener("click", () => {
+
+                        location.href = `produkter_detalje.html?id=${product.id}`;
+
+                    })
+
+                    produkter.appendChild(klon);
                 }
-
-                klon.querySelector("article").addEventListener("click", () => {
-
-                    location.href = `produkter_detalje.html?id=${product.id}`;
-
-                })
-
-                produkter.appendChild(klon);
             });
 
+        }
+
+
+
+        function addEventlistnerToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filterering);
+            });
+        }
+
+
+        function filterering() {
+            console.log("filter");
+            filter = this.dataset.kategori;
+            document.querySelector("h1").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt")
+            })
+            this.classList.add("valgt");
+
+            visProducts();
         }
 
 
@@ -103,5 +151,8 @@
                 document.querySelector("#menuknap").textContent = "X";
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>

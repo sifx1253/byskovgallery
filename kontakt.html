@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+
 </head>
 
 <body>
@@ -17,7 +21,8 @@
             <div id="menuknap">☰</div>
             <ul style="list-style-type:none" id="menu" class="hidden">
                 <a href="index.html"></a>
-                <li><a href="produkter.html">Værker</a></li><li><a href="books.html">Bøger</a></li>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
                 <li><a href="om.html">Om</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
@@ -25,15 +30,97 @@
         </nav>
     </header>
 
+    <h1 class="header_page">Kontakt</h1>
+
+
+    <main id="container"></main>
+
+    <template>
+
+        <article class="kontakt">
+
+            <p class="tekst"></p>
+            <p class="adresse"></p>
+            <p class="email"></p>
+            <p class="mobil"></p>
+            <img class="kontakt_billede" src="" alt="">
+
+        </article>
+    </template>
+
+
+    <footer>
+        <div class="wrapper">
+            <div class="left">
+                <p>Mobil: +45 20 82 24 58</p>
+                <p>Atelier: Falkenhøjvej 7</p>
+                <p>3460 Birkerød. Denmark</p>
+                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642">Se kort</a>
+                <p>Email:<a href="byskov@grundtvigs.dk">byskov@grundtvigs.dk</a></p>
+            </div>
+            <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
+                <p>Kunstbiblioteket Nikolajgade 22.</p>
+
+                <div class="some"></div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </footer>
+
+
 
 
     <script>
-        window.addEventListener("load", sidenVises);
+        document.addEventListener("DOMContentLoaded", start);
+        let pages
 
 
-        function sidenVises() {
-            console.log("sidenVises");
+
+
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/kontakt";
+
+
+
+
+
+        async function start() {
+            let response = await fetch(url);
+            pages = await response.json();
+            visPages();
+            toggleMenu();
             document.querySelector("#menuknap").addEventListener("click", toggleMenu);
+
+
+        }
+
+        // Samme som før
+        function visPages() {
+            console.log("JSON forberedes" + pages)
+
+            let liste = document.querySelector("#container");
+            let template = document.querySelector("template");
+
+            pages.forEach(page => {
+                const klon = template.cloneNode(true).content;
+
+                //                klon.querySelector(".tekst").textContent = page.title.rendered;
+                klon.querySelector(".tekst").textContent = page.tekst;
+                klon.querySelector(".adresse").textContent = page.adresse;
+                klon.querySelector(".email").textContent = page.email;
+                klon.querySelector(".mobil").textContent = page.mobil;
+
+                klon.querySelector(".kontakt_billede").src = page.billede.guid;
+
+
+                liste.appendChild(klon);
+            });
+
         }
 
 
