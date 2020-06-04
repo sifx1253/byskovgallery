@@ -4,7 +4,7 @@
 }
 
 body {
-    padding: 20px;
+    padding: 0;
     margin: 0 auto;
 
 }
@@ -12,6 +12,15 @@ body {
 img {
     width: 100%;
     object-fit: cover;
+}
+
+.wrapper_index {
+
+    padding: 20px;
+}
+
+.splash_tekst {
+    padding: 20px;
 }
 
 h1,
@@ -44,8 +53,19 @@ a {
 }
 
 
+.fremhaev {
 
+    font-weight: bold;
+}
 
+#logo {
+
+    max-width: 150px;
+}
+
+.pil {
+    display: none;
+}
 
 /***menu***/
 
@@ -74,12 +94,19 @@ header nav a {
     font-weight: bold;
     padding: 10px;
     color: black;
+    font-family: adelle,
+        serif;
+
+    font-weight: 400;
+
+    font-style: normal;
 }
 
 
 
 header nav a:visited {
-    color: red;
+    color: #2B8681;
+
 }
 
 .hidden {
@@ -98,14 +125,7 @@ header nav a:visited {
 /*****Menu SLUT*****/
 
 /***FOOTER***/
-/*
-.some {
-    background-image: url(img/some.svg);
-    height: 7vw;
-    width: 15.8vw;
 
-}
-*/
 
 footer {
     padding-top: 90px;
@@ -124,7 +144,7 @@ footer .wrapper {
 }
 
 
-footer .some {
+footer {
     flex-grow: 1;
     flex-basis: 500px;
     padding: 1.2rem;
@@ -146,58 +166,11 @@ footer .some {
 }
 
 
-#splash img {
 
-    height: 85vh;
-    width: 100vw;
-    object-fit: cover;
-}
+#go-back {
+    border: none;
+    max-width: 40px;
 
-
-
-
-.splash_tekst {
-    position: absolute;
-    left: 2vw;
-    top: 16vw;
-    width: 43vw;
-    padding-left: 4vw;
-}
-
-
-.pil img {
-
-    /*    background-image: url(img/pil.png);*/
-
-
-    position: absolute;
-    left: 19vw;
-    bottom: 4vw;
-    cursor: pointer;
-    max-width: 50px;
-}
-
-
-.pil {
-    animation-name: beat_kf;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-
-@keyframes beat_kf {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
 }
 
 
@@ -240,8 +213,58 @@ article.bred {
 
 /***MEDIA INDSTILLINGER***/
 @media screen and (min-width:600px) {
+    .splash_tekst {
+        position: absolute;
+        left: 2vw;
+        top: 16vw;
+        width: 43vw;
+        padding-left: 4vw;
+    }
 
 
+    #splash img {
+
+        height: 85vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+
+
+    .pil img {
+
+        position: relative;
+        left: 19vw;
+        bottom: 4vw;
+        cursor: pointer;
+        max-width: 50px;
+
+    }
+
+
+    .pil {
+        animation-name: beat_kf;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+
+    @keyframes beat_kf {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(10px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+}
+
+@media screen and (min-width:600px) {
 
     #liste_books {
         grid-template-columns: 2fr 2fr;
@@ -343,8 +366,18 @@ article.bred {
 
         object-fit: cover;
 
+
     }
 
+
+    .billede_produkt:hover {
+
+        transition: .4s;
+        transition-timing-function: cubic-bezier(.2, 0, .3, 1);
+        transform: scale(1);
+        cursor: pointer;
+        overflow: hidden;
+    }
 
     /**Produkt_detalje**/
     .wrapper_produkt #container_produkt {
@@ -401,13 +434,6 @@ article.bred {
 
     }
 
-    .titel_produkt {
-
-        border-bottom: 2px solid black;
-        padding: 10px;
-        width: 50%;
-    }
-
 
     .artist_para {
         font-weight: bold;
@@ -415,9 +441,9 @@ article.bred {
 
     }
 
-    pris {
+    .pris {
         font-family: 'Ubuntu', sans-serif;
-        color: aqua;
+        color: #2B8681;
         font-weight: 600;
 
 
@@ -537,24 +563,13 @@ article.bred {
 
 @media only screen and (min-width:600px)and (max-width: 2000px) {
 
-    #logo {
-        /*
-        background-image: url(img/logo.svg);
-        height: 8vw;
-        width: 13vw;
-*/
-        /*
-position: absolute;
-top: -6px;
-left: 0vw;
-cursor: pointer;
-*/
-    }
 
     #logo img {
         width: 10%;
         cursor: pointer;
         position: absolute;
+        max-width: 1000px;
+        cursor: pointer;
     }
 
     header {
@@ -603,6 +618,22 @@ cursor: pointer;
         text-decoration: none;
         color: black;
 
+    }
+
+    .some {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin-left: 25px;
+        width: 96%;
+
+    }
+
+    .face,
+    .insta {
+        max-width: 60px;
+        display: block;
+        padding: 3px;
     }
 
 

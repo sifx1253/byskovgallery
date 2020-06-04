@@ -38,7 +38,8 @@
 
     <div id="splash"><img src="img/Splash-100.jpg" alt="Billedkunst, danske kunstmalere, croqui model, surrealisme">
         <div class="splash_tekst">
-            <p>Kræsten Byskov, kunstneren bag Byskov Gallery <br> har en bred vifte af kompetencer og udtrykker sig med stor forskellighed igennem både tekst, maleri og illustrationer.
+            <p class="fremhaev">Kræsten Byskov, kunstneren bag Byskov Gallery </p>
+            <p>har en bred vifte af kompetencer og udtrykker sig med stor forskellighed igennem både tekst, maleri og illustrationer.
                 Kunsten blev hurtigt en del af Kræstens liv, da hans far Ole Byskov var kunstner og ikke var bleg for at lade Kræsten være med i atelieret. Hans karriere som kunstner starter dog først i 1978 da han får udgivet sin første illustration i Gyldendals litteratur blad Fælleden. Herfra former livet som kunstner sig for kræsten, med job på tegnestuen Gimle og flere illustrations udgivelser på bl.a. Ekstrabladet og i egne tegneserier, der nu er blevet til en stilling på grundtvigs højskole som underviser i tegning, maleri og kunsthistorie.
             </p>
         </div>
@@ -47,33 +48,35 @@
 
     </div>
 
-    <a href="#liste_forside">
-        <div class="pil">
-            <img src="img/pil.png" alt="pil der går ned">
+    <div class="wrapper_index">
 
+        <a href="#liste_forside">
+            <div class="pil">
+                <img src="img/pil.png" alt="pil der går ned">
+
+            </div>
+        </a>
+
+        <h1 class="header_constant">Nyheder</h1>
+        <div class="wrapper_forside">
+
+            <main id="liste_forside"></main>
+
+            <template>
+
+                <article class="book_img">
+                    <img class="billede" src="">
+                </article>
+                <article class="forside">
+
+                    <h1 class="overskrift"></h1>
+                    <p class="tekst"></p>
+
+
+                </article>
+            </template>
         </div>
-    </a>
-
-    <h1 class="header_constant">Nyheder</h1>
-    <div class="wrapper_forside">
-
-        <main id="liste_forside"></main>
-
-        <template>
-
-            <article class="book_img">
-                <img class="billede" src="">
-            </article>
-            <article class="forside">
-
-                <h1 class="overskrift"></h1>
-                <p class="tekst"></p>
-
-
-            </article>
-        </template>
     </div>
-
     <footer>
         <div class="wrapper">
             <div class="left">
@@ -85,8 +88,11 @@
             </div>
             <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
                 <p>Kunstbiblioteket Nikolajgade 22.</p>
+                <div class="some">
+                    <div class="face"> <a href="https://www.facebook.com/By-Byskov-296229904195893/"><img src="img/face.png" alt=""></a></div>
+                    <div class="insta"><a href="https://www.instagram.com/by_byskov/?hl=da"><img src="img/insta.png" alt=""></a></div>
+                </div>
 
-                <div class="some"><img src="img/some.png" alt=""></div>
             </div>
 
         </div>
