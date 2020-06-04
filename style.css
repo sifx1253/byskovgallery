@@ -70,6 +70,17 @@ a {
 /***menu***/
 
 
+#burger_menu {
+    font-size: 2rem;
+}
+
+.mylinks {
+    display: none;
+}
+
+.desktop {
+    display: none;
+}
 
 header {
     width: 100vw;
@@ -336,7 +347,15 @@ article.bred {
 }
 
 
+@media screen and (min-width:768px) {
+    .mobile {
+        display: none;
+    }
 
+    .desktop {
+        display: flex;
+    }
+}
 
 
 
@@ -581,8 +600,9 @@ article.bred {
 
     }
 
-    #menuknap {
+    #burger_menu {
         display: none;
+
 
     }
 
