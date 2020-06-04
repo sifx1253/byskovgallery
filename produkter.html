@@ -14,7 +14,9 @@
 </head>
 
 <body>
-    <header>
+
+
+    <header class="desktop">
 
         <div id="logo" onclick="window.location.href='index.html'">
 
@@ -22,7 +24,7 @@
         </div>
 
         <nav>
-            <div id="menuknap">☰</div>
+
             <ul style="list-style-type:none" id="menu" class="hidden">
                 <a href="index.html"></a>
                 <li><a href="produkter.html">Værker</a></li>
@@ -33,6 +35,29 @@
 
         </nav>
     </header>
+
+
+    <header class="mobile">
+
+        <nav>
+            <div id="burger_menu">☰</div>
+            <div class="menu_wrapper">
+                <div class="mylinks">
+                    <ul style="list-style-type: none">
+                        <li><a href="index.html">Forside</a></li>
+                        <li> <a href="produkter.html">Værker</a> </li>
+                        <li><a href="books.html">Bøger</a></li>
+                        <li><a href="om.html">Om</a></li>
+                        <li> <a href="kontakt.html">Kontakt</a></li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
 
     <nav id="knapper">
 
@@ -84,38 +109,22 @@
         </div>
 
 
-
-
-
-
     </footer>
 
 
 
-
+    <script src="menu.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", start);
         let products;
         let filter = "alle";
-
-
-
-
         let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter?per_page=100";
-
-
-
-
 
         async function start() {
             let response = await fetch(url);
-
             products = await response.json();
             visProducts();
-            toggleMenu();
             addEventlistnerToButtons();
-            document.querySelector("#menuknap").addEventListener("click", toggleMenu);
-
 
         }
 
@@ -130,8 +139,6 @@
             products.forEach(product => {
 
                 if (filter == "alle" || filter == product.kategori) {
-
-
                     const klon = template.cloneNode(true).content;
 
                     klon.querySelector(".billede_produkt").src = product.billede.guid;
@@ -172,20 +179,6 @@
             this.classList.add("valgt");
 
             visProducts();
-        }
-
-
-        function toggleMenu() {
-            console.log("toggleMenu");
-            document.querySelector("#menu").classList.toggle("hidden");
-
-            let erSkjult = document.querySelector("#menu").classList.contains("hidden");
-
-            if (erSkjult == true) {
-                document.querySelector("#menuknap").textContent = "☰";
-            } else {
-                document.querySelector("#menuknap").textContent = "X";
-            }
         }
 
     </script>
