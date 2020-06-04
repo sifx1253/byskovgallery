@@ -33,15 +33,21 @@
                 <h1 class="overskrift"></h1>
 
                 <h2 class="titel"></h2>
-
-                <p class="size"></p>
                 <p class=" pris"></p>
+                <p class="materiale"></p>
+                <p class="size"></p>
+
 
             </div>
             <div class="col_tekst">
                 <h3>Beskrivelse af værket</h3>
                 <p class="beskrivelse"></p>
-                <p class="lydfil"></p>
+
+
+                <p>Kunstnerens tanker bag værket</p>
+                <audio preload="auto" autoplay="autoplay" controls>
+                    <source src="mp3/travel_mixdown.mp3" type="audio/mp3">
+                </audio>
             </div>
 
 
@@ -59,11 +65,14 @@
 
 
 
+
         async function start() {
-            let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/${id}`);
+            let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/202`);
             pages = await jsonData.json();
             visPages();
+
             //            toggleMenu();
+
 
 
         }
@@ -72,10 +81,11 @@
         function visPages() {
 
 
+
             //            document.querySelector(".overskrift").textContent = pages.overskrift;
             document.querySelector(".titel").textContent = pages.titel;
             document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
-            //            document.querySelector(".matriale").textContent = 'Matrialer' + pages.matriale;
+            document.querySelector(".materiale").textContent = 'Matrialer:' + pages.materiale;
             document.querySelector(".size").textContent = 'Størrelse:' + pages.size;
 
             document.querySelector(".pris").textContent = 'Pris:' + pages.pris + ',-';
@@ -84,6 +94,9 @@
             document.querySelector(".billede").src = pages.billede.guid;
 
 
+            document.querySelector(".lydfil").src = pages.content.rendered;
+
         }
     </script>
+
 </body></html>
