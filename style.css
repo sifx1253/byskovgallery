@@ -306,7 +306,7 @@ article.bred {
 
 }
 
-@media screen and (min-width: 768px) and (max-width: 2000px) {
+@media screen and (min-width: 600px) and (max-width: 2000px) {
 
 
     #liste_books {
