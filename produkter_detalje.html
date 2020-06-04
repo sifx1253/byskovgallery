@@ -4,14 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Travel</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/dtw1azo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
 
-        <div id="logo" onclick="window.location.href='index.html'"></div>
+        <div id="logo" onclick="window.location.href='index.html'">
+
+            <img src="img/logo.png" alt="logo">
+        </div>
 
         <nav>
             <div id="menuknap">☰</div>
@@ -26,16 +31,23 @@
         </nav>
     </header>
 
+    <button id="go-back" onclick="window.location.href='produkter.html'">Go back!</button>
+
     <div class="wrapper_produkt">
         <main id="container_produkt">
             <div class="col_img"> <img class="billede" src=""></div>
             <div class="col_info">
                 <h1 class="overskrift"></h1>
 
-                <h2 class="titel"></h2>
-                <p class=" pris"></p>
-                <p class="materiale"></p>
-                <p class="size"></p>
+                <h2 class="titel_produkt"></h2>
+                <h3 class=" pris"></h3>
+                <h3 class="materiale"></h3>
+                <h3 class="size">
+                </h3>
+
+                <button>
+                    <a href="mailto:byskov@grundtvigs.dk">Kontakt Kræsten</a>
+                </button>
 
 
             </div>
@@ -44,7 +56,7 @@
                 <p class="beskrivelse"></p>
 
 
-                <p>Kunstnerens tanker bag værket</p>
+                <p class="artist_para">Kunstnerens tanker bag værket</p>
                 <audio preload="auto" play="play" controls>
                     <source src="mp3/travel_mixdown.mp3" type="audio/mp3">
                 </audio>
@@ -56,9 +68,31 @@
 
     </div>
 
+    <footer>
+        <div class="wrapper">
+            <div class="left">
+                <p>Mobil: +45 20 82 24 58</p>
+                <p>Atelier: Falkenhøjvej 7</p>
+                <p>3460 Birkerød. Denmark</p>
+                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642">Se kort</a>
+                <p>Email:<a href="mailto:byskov@grundtvigs.dk">byskov@grundtvigs.dk</a></p>
+            </div>
+            <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
+                <p>Kunstbiblioteket Nikolajgade 22.</p>
+
+                <div class="some"><img src="img/some.png" alt=""></div>
+            </div>
+
+        </div>
+
+
+
+    </footer>
+
+
     <script>
         let urlParams = new URLSearchParams(window.location.search);
-        let id = urlParams.get("id");
+        let id = urlParams.get('http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter');
         let pages;
         document.addEventListener("DOMContentLoaded", start)
 
@@ -70,8 +104,9 @@
             let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/202`);
             pages = await jsonData.json();
             visPages();
+            visTilbage();
 
-            //            toggleMenu();
+            toggleMenu();
 
 
 
@@ -81,14 +116,13 @@
         function visPages() {
 
 
-
             //            document.querySelector(".overskrift").textContent = pages.overskrift;
-            document.querySelector(".titel").textContent = pages.titel;
+            document.querySelector(".titel_produkt").textContent = pages.titel;
             document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
             document.querySelector(".materiale").textContent = 'Matrialer:' + pages.materiale;
             document.querySelector(".size").textContent = 'Størrelse:' + pages.size;
 
-            document.querySelector(".pris").textContent = 'Pris:' + pages.pris + ',-';
+            document.querySelector(".pris").textContent = pages.pris + ',-';
 
 
             document.querySelector(".billede").src = pages.billede.guid;

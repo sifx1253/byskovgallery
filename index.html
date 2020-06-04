@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <link rel="stylesheet" href="https://use.typekit.net/dtw1azo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+
+    <title>Forside</title>
     <link rel="stylesheet" href="style.css">
 
 
@@ -13,7 +17,10 @@
 <body>
     <header>
 
-        <div id="logo" onclick="window.location.href='index.html'"></div>
+        <div id="logo" onclick="window.location.href='index.html'">
+
+            <img src="img/logo.png" alt="logo">
+        </div>
 
         <nav>
             <div id="menuknap">☰</div>
@@ -34,14 +41,17 @@
                 Kunsten blev hurtigt en del af Kræstens liv, da hans far Ole Byskov var kunstner og ikke var bleg for at lade Kræsten være med i atelieret. Hans karriere som kunstner starter dog først i 1978 da han får udgivet sin første illustration i Gyldendals litteratur blad Fælleden. Herfra former livet som kunstner sig for kræsten, med job på tegnestuen Gimle og flere illustrations udgivelser på bl.a. Ekstrabladet og i egne tegneserier, der nu er blevet til en stilling på grundtvigs højskole som underviser i tegning, maleri og kunsthistorie.
             </p>
         </div>
-        <a href="#liste_forside">
-            <div class="pil">
 
-            </div>
-        </a>
 
 
     </div>
+
+    <a href="#liste_forside">
+        <div class="pil">
+            <img src="img/pil.png" alt="">
+
+        </div>
+    </a>
 
     <h1 class="header_constant">Nyheder</h1>
     <div class="wrapper_forside">
@@ -75,7 +85,7 @@
             <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
                 <p>Kunstbiblioteket Nikolajgade 22.</p>
 
-                <div class="some"></div>
+                <div class="some"><img src="img/some.png" alt=""></div>
             </div>
 
         </div>
@@ -108,8 +118,8 @@
             pages = await response.json();
             visPages();
             toggleMenu();
-            document.querySelector(".pil").addEventListener("click", scrollDown);
             document.querySelector("#menuknap").addEventListener("click", toggleMenu);
+
 
 
         }
@@ -117,6 +127,7 @@
         // Samme som før
         function visPages() {
             console.log("JSON forberedes" + pages)
+
 
             let liste = document.querySelector("#liste_forside");
             let template = document.querySelector("template");
@@ -133,7 +144,9 @@
                 liste.appendChild(klon);
             });
 
+
         }
+
 
 
         function toggleMenu() {
@@ -148,5 +161,8 @@
                 document.querySelector("#menuknap").textContent = "X";
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
