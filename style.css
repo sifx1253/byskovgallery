@@ -27,22 +27,14 @@ button {
 }
 
 p,
-h3 {
+h3,
+a {
 
     font-family: 'Ubuntu', sans-serif;
     line-height: 25px;
 
 }
 
-button {
-
-    font-family: adelle, serif;
-
-    font-weight: 400;
-
-    font-style: normal;
-    cursor: pointer;
-}
 
 a {
 
@@ -382,6 +374,24 @@ article.bred {
         transition: 2s;
         margin: 5px;
 
+    }
+
+    button:hover {
+        transition: .4s;
+        transition-timing-function: cubic-bezier(.2, 0, .3, 1);
+        transform: scale(1.07);
+        cursor: pointer;
+    }
+
+
+    #knapper .filter .p {
+
+        font-family: adelle, serif;
+
+        font-weight: 400;
+
+        font-style: normal;
+        cursor: pointer;
     }
 
     #knapper {
