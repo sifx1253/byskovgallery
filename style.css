@@ -192,13 +192,23 @@ footer {
 
 /**Forside SLUT***/
 
+.header_constant {
+    padding-top: 20px;
+    padding: 15px;
+    text-align: start;
+
+
+
+}
+
+
 /**Produkter INDSTILLINGER**/
 
 #produkter {
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px));
     grid-gap: 30px;
     grid-auto-flow: dense;
     padding: 10px;
@@ -311,10 +321,27 @@ article.bred {
 
 iframe {
 
-    width: 450px;
+    width: 350px;
     height: 315px;
 }
 
+
+#container {
+
+    padding: 20px;
+}
+
+
+
+footer .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 2px solid black;
+    padding: 10px;
+    width: 90%;
+
+}
 
 /***MEDIA INDSTILLINGER***/
 @media screen and (min-width:600px) {
@@ -432,6 +459,13 @@ iframe {
 
         max-width: 1200px;
     }
+
+    iframe {
+
+        width: 600px;
+        height: 315px;
+    }
+
 
 
 
@@ -641,6 +675,7 @@ iframe {
         padding: 15px;
         margin-left: 25px;
         text-align: start;
+
 
 
     }
