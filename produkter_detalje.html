@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="desktop">
 
         <div id="logo" onclick="window.location.href='index.html'">
 
@@ -19,7 +19,7 @@
         </div>
 
         <nav>
-            <div id="menuknap">☰</div>
+
             <ul style="list-style-type:none" id="menu" class="hidden">
                 <a href="index.html"></a>
                 <li><a href="produkter.html">Værker</a></li>
@@ -31,7 +31,37 @@
         </nav>
     </header>
 
-    <button id="go-back" onclick="window.location.href='produkter.html'"><img src="img/knap_x.png" alt="knap"></button>
+
+    <header class="mobile">
+        <div id="logo" onclick="window.location.href='index.html'"></div>
+
+        <nav>
+            <div id="burger_menu">☰</div>
+            <div class="menu_wrapper">
+                <div class="mylinks">
+                    <ul style="list-style-type: none">
+                        <li><a href="index.html">Forside</a></li>
+                        <li> <a href="produkter.html">Værker</a> </li>
+                        <li><a href="books.html">Bøger</a></li>
+                        <li><a href="om.html">Om</a></li>
+                        <li> <a href="kontakt.html">Kontakt</a></li>
+
+
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="knap_tilbage">
+        <button id="go-back" onclick="window.location.href='produkter.html'"><img src="img/knap_x.png" alt="knap"></button>
+    </div>
 
     <div class="wrapper_produkt">
         <main id="container_produkt">
@@ -68,6 +98,11 @@
 
     </div>
 
+
+
+
+
+
     <footer>
         <div class="wrapper">
             <div class="left">
@@ -87,32 +122,7 @@
             </div>
 
         </div>
-
-
-
-
-
-
-        <footer>
-            <div class="wrapper">
-                <div class="left">
-                    <p>Mobil: +45 20 82 24 58</p>
-                    <p>Atelier: Falkenhøjvej 7</p>
-                    <p>3460 Birkerød. Denmark</p>
-                    <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642">Se kort</a>
-                    <p>Email:<a href="byskov@grundtvigs.dk">byskov@grundtvigs.dk</a></p>
-                </div>
-                <div class="right"> <a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Billeder til salg og leje.</a>
-                    <p>Kunstbiblioteket Nikolajgade 22.</p>
-                    <div class="some">
-                        <div class="face"> <a href="https://www.facebook.com/By-Byskov-296229904195893/"><img src="img/face.png" alt=""></a></div>
-                        <div class="insta"><a href="https://www.instagram.com/by_byskov/?hl=da"><img src="img/insta.png" alt=""></a></div>
-                    </div>
-
-                </div>
-
-            </div>
-        </footer>
+    </footer>
 
 
 
@@ -121,51 +131,48 @@
 
 
 
-
-        <script>
-            let urlParams = new URLSearchParams(window.location.search);
-            let id = urlParams.get('http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter');
-            let pages;
-            document.addEventListener("DOMContentLoaded", start)
-
-
+    <script src="menu.js"></script>
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get('http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter');
+        let pages;
+        document.addEventListener("DOMContentLoaded", start)
 
 
 
-            async function start() {
-                let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/202`);
-                pages = await jsonData.json();
-                visPages();
-                visTilbage();
-
-                toggleMenu();
 
 
+        async function start() {
+            let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/202`);
+            pages = await jsonData.json();
+            visPages();
+            visTilbage();
 
-            }
-
-
-            function visPages() {
-
-
-                //            document.querySelector(".overskrift").textContent = pages.overskrift;
-                document.querySelector(".titel_produkt").textContent = pages.titel;
-                document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
-                document.querySelector(".materiale").textContent = 'Matrialer:' + pages.materiale;
-                document.querySelector(".size").textContent = 'Størrelse:' + pages.size;
-
-                document.querySelector(".pris").textContent = pages.pris + ',-';
+            toggleMenu();
 
 
-                document.querySelector(".billede").src = pages.billede.guid;
+
+        }
 
 
-                document.querySelector(".lydfil").src = pages.content.rendered;
+        function visPages() {
 
-            }
 
-        </script>
+            //            document.querySelector(".overskrift").textContent = pages.overskrift;
+            document.querySelector(".titel_produkt").textContent = pages.titel;
+            document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
+            document.querySelector(".materiale").textContent = 'Matrialer:' + pages.materiale;
+            document.querySelector(".size").textContent = 'Størrelse:' + pages.size;
 
-</body>
+            document.querySelector(".pris").textContent = pages.pris + ',-';
 
-</html>
+
+            document.querySelector(".billede").src = pages.billede.guid;
+
+
+            document.querySelector(".lydfil").src = pages.content.rendered;
+
+        }
+    </script>
+
+</body></html>

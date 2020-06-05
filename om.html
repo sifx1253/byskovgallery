@@ -14,15 +14,15 @@
 </head>
 
 <body>
-    <header>
+    <header class="desktop">
 
         <div id="logo" onclick="window.location.href='index.html'">
-
             <img src="img/logo.png" alt="logo">
         </div>
 
+
         <nav>
-            <div id="menuknap">☰</div>
+
             <ul style="list-style-type:none" id="menu" class="hidden">
                 <a href="index.html"></a>
                 <li><a href="produkter.html">Værker</a></li>
@@ -34,25 +34,59 @@
         </nav>
     </header>
 
+
+    <header class="mobile">
+
+        <div id="logo" onclick="window.location.href='index.html'">
+            <img src="img/logo.png" alt="logo">
+        </div>
+
+        <nav>
+            <div id="burger_menu">☰</div>
+            <div class="menu_wrapper">
+                <div class="mylinks">
+                    <ul style="list-style-type: none">
+                        <li><a href="index.html">Forside</a></li>
+                        <li> <a href="produkter.html">Værker</a> </li>
+                        <li><a href="books.html">Bøger</a></li>
+                        <li><a href="om.html">Om</a></li>
+                        <li> <a href="kontakt.html">Kontakt</a></li>
+
+
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <h1 class="header_constant">Om mig</h1>
 
+    <div class="om_wrapper">
+        <main id="om_container"></main>
 
-    <main id="om_container"></main>
+        <template>
+            <article class="om">
+                <article class="billede_om">
+                    <img class="om_billede" src="" alt="">
 
-    <template>
-        <article class="om">
-            <article class="billede_om">
-                <img class="om_billede" src="" alt="">
-
+                </article>
+                <article class="tekst_om">
+                    <p class="om_tekst"></p>
+                </article>
             </article>
-            <article class="tekst_om">
-                <p class="om_tekst"></p>
-            </article>
-        </article>
 
-    </template>
-    <div class="video_wrapper">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/69eoTbzXiwo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        </template>
+        <div class="video_wrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/69eoTbzXiwo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+    </div>
 
     <footer>
         <div class="wrapper">
@@ -84,7 +118,7 @@
 
 
 
-
+    <script src="menu.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", start);
         let pages
@@ -102,29 +136,13 @@
             let response = await fetch(url);
             pages = await response.json();
             visPages();
-            toggleMenu();
-            document.querySelector("#menuknap").addEventListener("click", toggleMenu);
-
 
 
         }
 
-        function toggleMenu() {
-            console.log("toggleMenu");
-            document.querySelector("#menu").classList.toggle("hidden");
 
 
 
-            let erSkjult = document.querySelector("#menu").classList.contains("hidden");
-
-            if (erSkjult == true) {
-                document.querySelector("#menuknap").textContent = "☰";
-            } else {
-                document.querySelector("#menuknap").textContent = "X";
-            }
-        }
-
-        // Samme som før
         function visPages() {
             console.log("JSON forberedes" + pages)
 
